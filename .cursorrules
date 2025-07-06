@@ -1,0 +1,10 @@
+# Project Documentation Links
+@docs
+- README.md - Main project documentation
+- pkg/dsl/README.md - DSL package documentation  
+- pkg/rpc/README.md - RPC framework documentation
+- examples/ - Usage examples directory
+- migrations/ - Database migration files
+- tests/integration/ - Integration test examples
+- OSS_TODO.md - Open source tasks and roadmap
+- https://pocketbase.io/docs/ - PocketBase official documentation
