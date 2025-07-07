@@ -1,5 +1,6 @@
 # PocketBase Toolkit
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/sospartan/pb-toolkit.svg)](https://pkg.go.dev/github.com/sospartan/pb-toolkit)   
 A Go toolkit for PocketBase-based Application.
 
 ## Installation
