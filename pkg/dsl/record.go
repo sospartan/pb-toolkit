@@ -38,7 +38,6 @@ type QueryBuilder struct {
 	perPage int          // Number of items per page
 	expand  string       // Comma-separated list of relations to expand
 	sort    string       // Sort expression (e.g., "-created,name")
-	params  []dbx.Params // Parameters for parameterized queries
 }
 
 // Query creates a new QueryBuilder with the specified filter expression.
@@ -108,21 +107,6 @@ func (q *QueryBuilder) Expand(expand string) *QueryBuilder {
 //	query := dsl.Query("").Sort("name,-created,updated")
 func (q *QueryBuilder) Sort(sort string) *QueryBuilder {
 	q.sort = sort
-	return q
-}
-
-// Params adds parameters for parameterized queries.
-//
-// This method supports multiple dbx.Params arguments, which will be
-// merged together. Parameters are used to safely bind values to
-// placeholders in the filter expression.
-//
-// Example:
-//
-//	query := dsl.Query("status = {:status} AND age > {:min_age}")
-//		.Params(dbx.Params{"status": "active"}, dbx.Params{"min_age": 18})
-func (q *QueryBuilder) Params(params ...dbx.Params) *QueryBuilder {
-	q.params = params
 	return q
 }
 

@@ -2,8 +2,6 @@ package dsl
 
 import (
 	"testing"
-
-	"github.com/pocketbase/dbx"
 )
 
 func TestQueryBuilderChaining(t *testing.T) {
@@ -11,8 +9,7 @@ func TestQueryBuilderChaining(t *testing.T) {
 	query := Query("status = 'active'").
 		Page(1, 10).
 		Expand("user,profile").
-		Sort("-created").
-		Params(dbx.Params{"status": "active"})
+		Sort("-created")
 
 	if query.filter != "status = 'active'" {
 		t.Errorf("Expected filter 'status = 'active'', got '%s'", query.filter)
@@ -34,9 +31,6 @@ func TestQueryBuilderChaining(t *testing.T) {
 		t.Errorf("Expected sort '-created', got '%s'", query.sort)
 	}
 
-	if len(query.params) != 1 {
-		t.Errorf("Expected 1 param, got %d", len(query.params))
-	}
 }
 
 func TestQueryBuilderMethods(t *testing.T) {
@@ -68,12 +62,6 @@ func TestQueryBuilderMethods(t *testing.T) {
 		t.Errorf("Expected sort 'created', got '%s'", query.sort)
 	}
 
-	// Test Params method
-	params := dbx.Params{"id": 123}
-	query.Params(params)
-	if len(query.params) != 1 {
-		t.Errorf("Expected 1 param, got %d", len(query.params))
-	}
 }
 
 func TestQueryBuilderDefaultValues(t *testing.T) {
@@ -96,22 +84,6 @@ func TestQueryBuilderDefaultValues(t *testing.T) {
 		t.Errorf("Expected default sort '', got '%s'", query.sort)
 	}
 
-	if len(query.params) != 0 {
-		t.Errorf("Expected default params length 0, got %d", len(query.params))
-	}
-}
-
-func TestQueryBuilderMultipleParams(t *testing.T) {
-	// Test multiple params
-	query := Query("status = {:status} AND value > {:min_value}")
-	query.Params(
-		dbx.Params{"status": "active"},
-		dbx.Params{"min_value": 100},
-	)
-
-	if len(query.params) != 2 {
-		t.Errorf("Expected 2 params, got %d", len(query.params))
-	}
 }
 
 func TestQueryBuilderEmptyFilter(t *testing.T) {

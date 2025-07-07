@@ -8,7 +8,7 @@ import (
 func init() {
 	m.Register(func(app core.App) error {
 		// init a new base collection for products
-		collection := core.NewCollection("products", "products", core.CollectionTypeBase)
+		collection := core.NewCollection(core.CollectionTypeBase, "products")
 
 		// add custom fields
 		collection.Fields.Add(
