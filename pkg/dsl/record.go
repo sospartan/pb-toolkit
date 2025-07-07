@@ -18,6 +18,7 @@
 package dsl
 
 import (
+	"database/sql"
 	"fmt"
 	"strings"
 
@@ -176,7 +177,7 @@ func (c *CollectionQueryBuilder) First(query QueryBuilder, params ...dbx.Params)
 		return nil, err
 	}
 	if len(records) == 0 {
-		return nil, fmt.Errorf("no records found")
+		return nil, sql.ErrNoRows
 	}
 	record := records[0]
 	if query.expand != "" {
