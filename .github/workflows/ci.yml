@@ -39,6 +39,9 @@ jobs:
       - name: Build server
         run: go build -o server ./cmd/server
       - name: Start server in background
+        env:
+          WECHAT_APP_ID: "test_app_id"
+          WECHAT_APP_SECRET: "test_app_secret"
         run: |
           ./server serve --http="127.0.0.1:8099" &
           echo $! > server.pid
