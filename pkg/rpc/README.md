@@ -2,6 +2,10 @@
 
 A JSON-RPC style framework for building service-oriented APIs with PocketBase, featuring automatic service registration and method discovery.
 
+## Why Use This Library?
+
+PocketBase does provide complete CRUD APIs, right? Yes, but in my personal experience, I don't prefer using API rules to control all data security and validation. When business logic becomes more complex, it becomes difficult to maintain for me. For example, with a collection where "some fields are user-modifiable while others are not allowed" - this kind of scenario. I personally prefer to keep all collection APIs open only to admin users, and handle other parts through custom backend code.
+
 ## Features
 
 - **Automatic Service Registration**: Register services using reflection
